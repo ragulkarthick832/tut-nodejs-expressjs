@@ -5,9 +5,10 @@ const app = express()
 // setup static and middleware
 app.use(express.static('./public'))
 
-app.get('/',(req,res)=>{
-    res.sendFile(path.resolve(__dirname,'./navbar-app/index.html'))
-})
+// app.get('/',(req,res)=>{
+//     res.sendFile(path.resolve(__dirname,'./navbar-app/index.html'))
+//     adding to static
+// })
 
 app.get('/about',(req,res)=>{
     res.send('About Page')
