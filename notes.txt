@@ -1,1 +1,4 @@
 server.listen is asynchronous
+streams used to read or write the data sequentially
+when we use readFileSync it sends the whole data but if we use stream
+    did divides into chunks and make easier for data transmission.
