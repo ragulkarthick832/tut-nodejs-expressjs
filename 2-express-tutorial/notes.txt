@@ -1,0 +1,5 @@
+without using the express we need to individuallly 
+handle the request of each modules in index.html
+
+with express we need can use assest.static
+
