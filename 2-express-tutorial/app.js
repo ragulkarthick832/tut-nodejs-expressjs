@@ -1,30 +1,38 @@
 const express = require('express')
 const app = express()
-const logger = require('./logger')
-const authorize = require('./authorize')
-// req => middleware => res
+let {people} = require('./data')
 
-// express will supply the required flow logic  -- next paramter 
 
-app.use('/api',logger)
+// static assests
 
-app.use('/',authorize)
+app.use(express.static('./methods-public'))
+// parse from the data
+app.use(express.urlencoded({extended:false}))
 
-app.get('/',(req,res)=>{
-    
-    res.send('Home')
-})
-app.get('/about',(req,res)=>{
-    res.send('About')
+app.use(express.json)
+
+app.get('/api/people',(req,res)=>{
+    res.status(200).json({success:true,data:people})
 })
 
 
-app.get('/api/about',(req,res)=>{
-    res.send('Products')
+app.post('/login',(req,res)=>{
+    const {name} = req.body
+    if(name){
+        return res.status(200).send(`Welcome ${name}`)
+    }
+    res.status(401).send('Please provide Credentials')
 })
-app.get('/api/items',(req,res)=>{
-    res.send('Ites')
+
+app.post('/api/people',(req,res)=>{
+    const {name} = req.body
+    if(!name){
+        return res.status(400).json({success:false,msg:'please provide name value'})
+    }
+    res.status(201).json({success:true,person:name})
 })
+
+
 app.listen(5000,()=>{
-    console.log('Server is listening on port 5000')
-}) 
+    console.log('Server is listening on port 5000...')
+})
