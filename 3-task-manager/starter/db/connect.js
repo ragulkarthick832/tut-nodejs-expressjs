@@ -1,2 +1,12 @@
-const connectionString = 
- 'mongodb+srv://<db_username>:<db_password>@nodejstutorial.ffkg9.mongodb.net/?retryWrites=true&w=majority&appName=NodejsTutorial'
+const connectionString = ''
+const mongoose = require('mongoose')
+
+const connectDB = (url) =>{
+    return mongoose.connect(url)
+}
+
+
+module.exports = connectDB
+
+
+
